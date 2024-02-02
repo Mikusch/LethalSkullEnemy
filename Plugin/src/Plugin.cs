@@ -5,7 +5,6 @@ using LethalLib.Modules;
 using static LethalLib.Modules.Levels;
 using static LethalLib.Modules.Enemies;
 using System.IO;
-using BepInEx.Logging;
 
 namespace Skull
 {
@@ -13,12 +12,6 @@ namespace Skull
     public class SkullPlugin : BaseUnityPlugin
     {
         private static AssetBundle _mainAssetBundle;
-        internal new static ManualLogSource Logger;
-
-        private SkullPlugin()
-        {
-            Logger = base.Logger;
-        }
 
         private void Awake()
         {

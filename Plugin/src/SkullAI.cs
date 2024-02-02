@@ -40,7 +40,7 @@ namespace Skull
             if (!HasValidTarget())
             {
                 targetPlayer = GetClosestPlayer();
-                
+
                 if (debugEnemyAI && targetPlayer != null)
                     Debug.Log($"Found new target: {targetPlayer.playerUsername}");
             }
@@ -49,7 +49,7 @@ namespace Skull
             {
                 if (debugEnemyAI)
                     Debug.Log("Failed to find new target");
-                
+
                 return;
             }
 
