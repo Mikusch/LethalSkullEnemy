@@ -1,10 +1,9 @@
 {
     "name": "SkullEnemy",
-    "version_number": "1.0.0",
-    "website_url": "https://github.com/Mikusch/LethalSkull",
+    "version_number": "1.0.1",
+    "website_url": "https://github.com/Mikusch/LethalSkullEnemy",
     "description": "Adds a new enemy, the ominous floating skull.",
     "dependencies": [
-        "BepInEx-BepInExPack-5.4.2100",
         "Evaisa-LethalLib-0.14.2"
     ]
 }
