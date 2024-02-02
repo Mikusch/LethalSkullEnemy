@@ -1,10 +1,10 @@
 ManifestFileVersion: 0
-CRC: 2311750266
+CRC: 839453431
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: modassets
       Dependencies: {}
     Info_1:
-      Name: skull
+      Name: skullassets
       Dependencies: {}
