@@ -2,8 +2,6 @@
 using UnityEngine;
 using BepInEx;
 using LethalLib.Modules;
-using static LethalLib.Modules.Levels;
-using static LethalLib.Modules.Enemies;
 using System.IO;
 
 namespace Skull
@@ -11,8 +9,6 @@ namespace Skull
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
     public class SkullPlugin : BaseUnityPlugin
     {
-        private static AssetBundle _mainAssetBundle;
-
         private void Awake()
         {
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -21,20 +17,21 @@ namespace Skull
                 return;
             }
 
-            _mainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyLocation!, "skullassets"));
-            if (_mainAssetBundle == null)
+            var assetBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyLocation!, "skullassets"));
+            if (assetBundle == null)
             {
                 Logger.LogError("Failed to load custom assets");
                 return;
             }
 
-            var skull = _mainAssetBundle.LoadAsset<EnemyType>("SkullEnemy");
-            var terminalNode = _mainAssetBundle.LoadAsset<TerminalNode>("SkullTerminalNode");
-            var terminalKeyword = _mainAssetBundle.LoadAsset<TerminalKeyword>("SkullTerminalKeyword");
+            var skull = assetBundle.LoadAsset<EnemyType>("SkullEnemy");
+            var terminalNode = assetBundle.LoadAsset<TerminalNode>("SkullTerminalNode");
+            var terminalKeyword = assetBundle.LoadAsset<TerminalKeyword>("SkullTerminalKeyword");
 
             NetworkPrefabs.RegisterNetworkPrefab(skull.enemyPrefab);
-            RegisterEnemy(skull, 100, LevelTypes.TitanLevel | LevelTypes.DineLevel | LevelTypes.RendLevel,
-                SpawnType.Default, terminalNode, terminalKeyword);
+            Enemies.RegisterEnemy(skull, 100,
+                Levels.LevelTypes.TitanLevel | Levels.LevelTypes.DineLevel | Levels.LevelTypes.RendLevel,
+                Enemies.SpawnType.Default, terminalNode, terminalKeyword);
 
             // Required by Unity Netcode Patcher
             var types = Assembly.GetExecutingAssembly().GetTypes();
