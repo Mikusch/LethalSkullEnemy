@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d3fcb39dd67306e9bb17a603308070, type: 3}
+  m_Name: SkullEnemy
+  m_EditorClassIdentifier: 
+  enemyName: Skull
+  probabilityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spawningDisabled: 0
+  numberSpawnedFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useNumberSpawnedFalloff: 0
+  enemyPrefab: {fileID: 262808681497371813, guid: 3dafc363afd7ff14085be061b21184b6,
+    type: 3}
+  PowerLevel: 3
+  MaxCount: 1
+  numberSpawned: 0
+  isOutsideEnemy: 0
+  isDaytimeEnemy: 0
+  normalizedTimeInDayToLeave: 0
+  stunTimeMultiplier: 0
+  doorSpeedMultiplier: 0
+  stunGameDifficultyMultiplier: 0
+  canBeStunned: 0
+  canDie: 0
+  destroyOnDeath: 0
+  canSeeThroughFog: 0
+  timeToPlayAudio: 0
+  loudnessMultiplier: 0
+  overrideVentSFX: {fileID: 0}
+  hitBodySFX: {fileID: 0}
+  hitEnemyVoiceSFX: {fileID: 0}
+  deathSFX: {fileID: 8300000, guid: 41f8f37d0e294f3459e6772d33cfe7e8, type: 3}
+  stunSFX: {fileID: 0}
+  miscAnimations: []
+  audioClips:
+  - {fileID: 8300000, guid: 44a043a88b2c01d48a8394a0166c6a5f, type: 3}
+  - {fileID: 8300000, guid: 2479c4598cd52104fb7e1554a408e580, type: 3}
+  - {fileID: 8300000, guid: 1687a8939943a954995fdd3e699bc09d, type: 3}
