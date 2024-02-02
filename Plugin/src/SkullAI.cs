@@ -1,5 +1,4 @@
-﻿using GameNetcodeStuff;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Skull
 {
@@ -17,7 +16,7 @@ namespace Skull
             if (isEnemyDead)
                 return;
 
-            PlayerControllerB playerController = MeetsStandardPlayerCollisionConditions(other);
+            var playerController = MeetsStandardPlayerCollisionConditions(other);
             if (playerController == null)
                 return;
 
@@ -53,8 +52,8 @@ namespace Skull
                 return;
             }
 
-            Vector3 direction = (targetPlayer.playerGlobalHead.position - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            var direction = (targetPlayer.playerGlobalHead.position - transform.position).normalized;
+            var lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
             transform.position += direction * (Time.deltaTime * MovementSpeed);
         }

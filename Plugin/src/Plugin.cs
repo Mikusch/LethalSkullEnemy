@@ -21,7 +21,7 @@ namespace Skull
                 return;
             }
 
-            _mainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyLocation!, "skull"));
+            _mainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyLocation!, "skullassets"));
             if (_mainAssetBundle == null)
             {
                 Logger.LogError("Failed to load custom assets");
@@ -36,8 +36,7 @@ namespace Skull
             RegisterEnemy(skull, 100, LevelTypes.TitanLevel | LevelTypes.DineLevel | LevelTypes.RendLevel,
                 SpawnType.Default, terminalNode, terminalKeyword);
 
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
-
+            // Required by Unity Netcode Patcher
             var types = Assembly.GetExecutingAssembly().GetTypes();
             foreach (var type in types)
             {
@@ -51,6 +50,8 @@ namespace Skull
                     }
                 }
             }
+
+            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }
     }
 }
