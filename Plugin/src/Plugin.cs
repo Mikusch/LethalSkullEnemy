@@ -24,12 +24,13 @@ namespace Skull
                 return;
             }
 
-            var skull = assetBundle.LoadAsset<EnemyType>("SkullEnemy");
+            var skullEnemy = assetBundle.LoadAsset<EnemyType>("SkullEnemy");
             var terminalNode = assetBundle.LoadAsset<TerminalNode>("SkullTerminalNode");
             var terminalKeyword = assetBundle.LoadAsset<TerminalKeyword>("SkullTerminalKeyword");
 
-            NetworkPrefabs.RegisterNetworkPrefab(skull.enemyPrefab);
-            Enemies.RegisterEnemy(skull, 100,
+            NetworkPrefabs.RegisterNetworkPrefab(skullEnemy.enemyPrefab);
+
+            Enemies.RegisterEnemy(skullEnemy, 66,
                 Levels.LevelTypes.TitanLevel | Levels.LevelTypes.DineLevel | Levels.LevelTypes.RendLevel,
                 Enemies.SpawnType.Default, terminalNode, terminalKeyword);
 

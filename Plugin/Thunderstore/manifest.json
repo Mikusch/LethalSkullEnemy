@@ -1,6 +1,6 @@
 {
     "name": "SkullEnemy",
-    "version_number": "1.0.2",
+    "version_number": "1.0.3",
     "website_url": "https://github.com/Mikusch/LethalSkullEnemy",
     "description": "Adds a new custom enemy, the floating skull.",
     "dependencies": [
