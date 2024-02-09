@@ -1,13 +1,29 @@
-﻿using UnityEngine;
+﻿using BepInEx.Configuration;
+using UnityEngine;
 
 namespace Skull
 {
     public class SkullAI : EnemyAI
     {
         public float laughTimer;
+        public float movementSpeed;
+        public float rotationSpeed;
 
-        private const float MovementSpeed = 2f;
-        private const float RotationSpeed = 2f;
+        public override void Start()
+        {
+            base.Start();
+
+            movementSpeed =
+                SkullPlugin.ConfigFile.TryGetEntry("Movement", "MovementSpeed",
+                    out ConfigEntry<float> movementSpeedEntry)
+                    ? movementSpeedEntry.Value
+                    : 2f;
+            rotationSpeed =
+                SkullPlugin.ConfigFile.TryGetEntry("Movement", "RotationSpeed",
+                    out ConfigEntry<float> rotationSpeedEntry)
+                    ? rotationSpeedEntry.Value
+                    : 2f;
+        }
 
         public override void OnCollideWithPlayer(Collider other)
         {
@@ -54,8 +70,9 @@ namespace Skull
 
             var direction = (targetPlayer.playerGlobalHead.position - transform.position).normalized;
             var lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
-            transform.position += direction * (Time.deltaTime * MovementSpeed);
+            transform.rotation =
+                Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+            transform.position += direction * (Time.deltaTime * movementSpeed);
         }
 
         private bool HasValidTarget()
