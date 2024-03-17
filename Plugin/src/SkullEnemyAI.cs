@@ -1,13 +1,23 @@
 ﻿using UnityEngine;
 
-namespace Skull
+namespace SkullEnemy
 {
-    public class SkullAI : EnemyAI
+    public class SkullEnemyAI : EnemyAI
     {
         public float laughTimer;
 
-        private const float MovementSpeed = 2f;
-        private const float RotationSpeed = 2f;
+        private float _movementSpeed;
+        private float _rotationSpeed;
+        private bool _canOnlyKillTargetPlayer;
+
+        public override void Start()
+        {
+            base.Start();
+
+            _movementSpeed = SkullEnemyPlugin.Instance.ConfigMovementSpeed.Value;
+            _rotationSpeed = SkullEnemyPlugin.Instance.ConfigRotationSpeed.Value;
+            _canOnlyKillTargetPlayer = SkullEnemyPlugin.Instance.ConfigCanOnlyKillTargetPlayer.Value;
+        }
 
         public override void OnCollideWithPlayer(Collider other)
         {
@@ -18,6 +28,9 @@ namespace Skull
 
             var playerController = MeetsStandardPlayerCollisionConditions(other);
             if (playerController == null)
+                return;
+
+            if (_canOnlyKillTargetPlayer && playerController != targetPlayer)
                 return;
 
             playerController.KillPlayer(Vector3.zero, deathAnimation: 1);
@@ -54,8 +67,8 @@ namespace Skull
 
             var direction = (targetPlayer.playerGlobalHead.position - transform.position).normalized;
             var lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
-            transform.position += direction * (Time.deltaTime * MovementSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
+            transform.position += direction * (Time.deltaTime * _movementSpeed);
         }
 
         private bool HasValidTarget()

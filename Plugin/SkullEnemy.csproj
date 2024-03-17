@@ -2,9 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <AssemblyName>Skull</AssemblyName>
-        <Description>Test Plugin.</Description>
-        <Version>1.0.4</Version>
+        <AssemblyName>SkullEnemy</AssemblyName>
+        <Description>Adds a new custom enemy, the floating skull.</Description>
+        <Version>1.1.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <Company>Mikusch</Company>
