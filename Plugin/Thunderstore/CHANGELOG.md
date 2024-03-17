@@ -21,7 +21,7 @@
 
 ## 1.1.0
 
-* The skull will now only kill its target player and phase through others
+* The skull will now only kill its target player and phase through everyone else
 * Added BepInEx config support
   * Config file will be created on game startup
   * The following properties can be configured:
