@@ -12,18 +12,19 @@ namespace SkullEnemy
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
     public class SkullEnemyPlugin : BaseUnityPlugin
     {
-        public static SkullEnemyPlugin Instance;
-
-        public ConfigEntry<float> ConfigMovementSpeed;
-        public ConfigEntry<float> ConfigRotationSpeed;
-        public ConfigEntry<bool> ConfigCanOnlyKillTargetPlayer;
-
         private static readonly Dictionary<Levels.LevelTypes, int> DefaultLevelRarities = new()
         {
             [Levels.LevelTypes.RendLevel] = 66,
             [Levels.LevelTypes.TitanLevel] = 66,
-            [Levels.LevelTypes.DineLevel] = 66
+            [Levels.LevelTypes.DineLevel] = 66,
+            [Levels.LevelTypes.Modded] = 66
         };
+
+        public static SkullEnemyPlugin Instance;
+
+        public ConfigEntry<float> ConfigMovementSpeed;
+        public ConfigEntry<float> ConfigRotationSpeed;
+        public ConfigEntry<bool> ConfigCanOnlyCollideWithTargetPlayer;
 
         private void Awake()
         {
@@ -46,13 +47,14 @@ namespace SkullEnemy
                 "The speed at which the enemy moves towards its target.");
             ConfigRotationSpeed = Config.Bind("General", "RotationSpeed", 2f,
                 "The speed at which the enemy rotates towards its target.");
-            ConfigCanOnlyKillTargetPlayer = Config.Bind("General", "CanOnlyKillTargetPlayer", true,
-                "If enabled, the enemy will only be able to kill its target player.");
+            ConfigCanOnlyCollideWithTargetPlayer = Config.Bind("General", "CanOnlyCollideWithTargetPlayer", true,
+                "If enabled, the enemy will only be able to collide with its target player.");
 
             var levelRarities = new Dictionary<Levels.LevelTypes, int>();
             foreach (Levels.LevelTypes levelType in Enum.GetValues(typeof(Levels.LevelTypes)))
             {
-                if (!Levels.LevelTypes.Vanilla.HasFlag(levelType) || levelType == Levels.LevelTypes.Vanilla)
+                if (levelType == Levels.LevelTypes.None || levelType == Levels.LevelTypes.All ||
+                    Levels.LevelTypes.Vanilla.HasFlag(levelType) && levelType == Levels.LevelTypes.Vanilla)
                     continue;
 
                 var configEntry = Config.Bind("Spawning", $"{levelType}Rarity",
@@ -67,6 +69,7 @@ namespace SkullEnemy
             NetworkPrefabs.RegisterNetworkPrefab(skullEnemyType.enemyPrefab);
             Enemies.RegisterEnemy(skullEnemyType, levelRarities, null, skullTerminalNode, skullTerminalKeyword);
 
+            // https://github.com/EvaisaDev/UnityNetcodePatcher?tab=readme-ov-file#preparing-mods-for-patching
             var types = Assembly.GetExecutingAssembly().GetTypes();
             foreach (var type in types)
             {

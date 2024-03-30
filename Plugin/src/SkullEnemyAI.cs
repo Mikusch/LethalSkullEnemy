@@ -8,7 +8,7 @@ namespace SkullEnemy
 
         private float _movementSpeed;
         private float _rotationSpeed;
-        private bool _canOnlyKillTargetPlayer;
+        private bool _canOnlyCollideWithTargetPlayer;
 
         public override void Start()
         {
@@ -16,7 +16,7 @@ namespace SkullEnemy
 
             _movementSpeed = SkullEnemyPlugin.Instance.ConfigMovementSpeed.Value;
             _rotationSpeed = SkullEnemyPlugin.Instance.ConfigRotationSpeed.Value;
-            _canOnlyKillTargetPlayer = SkullEnemyPlugin.Instance.ConfigCanOnlyKillTargetPlayer.Value;
+            _canOnlyCollideWithTargetPlayer = SkullEnemyPlugin.Instance.ConfigCanOnlyCollideWithTargetPlayer.Value;
         }
 
         public override void OnCollideWithPlayer(Collider other)
@@ -30,7 +30,7 @@ namespace SkullEnemy
             if (playerController == null)
                 return;
 
-            if (_canOnlyKillTargetPlayer && playerController != targetPlayer)
+            if (_canOnlyCollideWithTargetPlayer && playerController != targetPlayer)
                 return;
 
             playerController.KillPlayer(Vector3.zero, deathAnimation: 1);
