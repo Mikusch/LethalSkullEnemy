@@ -33,7 +33,7 @@
 
 # 1.2.0
 
-* The enemy can spawn on modded moons now
+* The enemy can now spawn on modded moons
 * Added config key `ModdedRarity` to allow adjusting rarity on modded moons
     * It is currently not possible to adjust its rarity for specific modded moons, a solution is actively being worked on
-* Renamed config key `ConfigCanOnlyKillTargetPlayer` to `CanOnlyCollideWithTargetPlayer` to clarify its purpose
+* Renamed config key `CanOnlyKillTargetPlayer` to `CanOnlyCollideWithTargetPlayer` to clarify its purpose
